@@ -1,17 +1,35 @@
+"""A simple chat program based greatly upon susmithHCK's neuron
+
+It doesn't have a lot of functionality, but it will in the future.
+
+This is just the server part of the program, which in this case just recieves and distributes messages.
+
+Example:
+  To use this, you simply need to type this into your terminal::
+    
+    $ python server.py
+    
+TODO:
+  * Add channel functionality
+  * Add private message functionality
+"""
+
 import socket
-import sys
 import select
 
-  HOST = '127.0.0.1'
-  PORT = 8000
-  SOCKET_LIST = []
+  HOST = '127.0.0.1' # IP address of server
+  PORT = 8000        # Port for server
+  SOCKET_LIST = []   # List of clients
   
 def chat_server():
+  """Function that includes all of the server functionality
   
-  server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  server_socket.bind((HOST, PORT))
+  Includes defining the server, handling and distributing the messages
+  """
+  server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # The definition of the socket
+  server_socket.bind((HOST, PORT))                                  # Binding of the socket to the defined host and port
   # socket.setsockopt()
-  server.listen(10)
+  server.listen(10)                                                 # Sets how many connections the server can accept
   
   SOCKET_LIST.append(server_socket)
   
