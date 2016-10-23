@@ -22,3 +22,23 @@ def chat_client():
     
     print("Connected to server")
     
+    while True:
+      socket_list = [sys.stdin, s]
+      read_sockets, write_sockets, error_sockets = select.select(socket_list, [], [])
+      for sock in read_sockets:
+        if sock == s:
+          data = sock.recv(1024)
+      
+          if not data:
+            print("Disconnected from server")
+            sys.exit()
+          else:
+            sys.stdout.write(data)
+            sys.stdout.write("[Me :]")
+        else:
+          msg = sys.stdin.readline()
+          msg = '[ ' + uname + ': ]' + msg
+          s.send(msg)
+          sys.stdout.write('[Me :]')
+if __name__ == "__main__":
+  sys.exit(chat_client())
